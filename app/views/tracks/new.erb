@@ -1,0 +1,23 @@
+<% if @track && @track.errors.any?%>
+  <% @track.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<form action="/tracks" method="post">
+  <div>
+    <label for="Title">Title:</label>
+    <input type="text" name="title" id="title" value="<%=@track && @track.title%>">
+  </div>
+  <div>
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author" value="<%=@track && @track.author%>">
+  </div>
+  <div>
+    <label for="url">URL:</label>
+    <input type="text" name="url" id="url" value="<%=@track && @track.url%>">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>

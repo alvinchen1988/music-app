@@ -1,0 +1,26 @@
+<% if params[:message] %>
+  <p><%= params[:message] %></p>
+<% end %>
+<h1>Welcome to Music Tracks</h1>
+<a href="/tracks">View all tracks...</a>
+<a href="/tracks/new">Post a new track...</a>
+
+<% unless logged_in?%>
+  
+<h2>Please Log in below, in order to vote for your favorite song tracks, if you don't have an account yet, <a href="/users/new">register</a> first</h2>
+<h2>Log in</h2>
+<form action="/login" method="post">
+  <div>
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email" value="<%=@user && @user.email%>">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="text" name="password" id="password">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+<% end %>

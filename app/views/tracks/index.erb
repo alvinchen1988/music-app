@@ -1,0 +1,25 @@
+
+<h1>All tracks</h1>
+
+<% if params[:message] %>
+  <p style="color: red;"><%= params[:message] %></p>
+<% end %>
+
+<% @tracks.each do |track| %>
+
+<div class="message">
+  <a href="/tracks/<%=track.id%>"><h2><%= track.title%></h2></a>
+  <p><%= track.url%></p>
+  <small>by <%= track.author%></small>
+  <small>votes: <%=track.num_votes%></small>
+  <% if logged_in? %>
+    <form action="/cast-vote" method="post">
+      <input type="hidden" name="track_id" value="<%=track.id%>">
+      <input type="submit" value="up vote">
+    </form>
+  <% end %>
+</div>
+
+<% end %>
+
+
