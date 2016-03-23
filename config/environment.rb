@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'bcrypt'
+require 'rack-flash'
 require 'active_support/all'
 
 # Load Sinatra Framework (with AR)

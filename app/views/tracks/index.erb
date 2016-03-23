@@ -1,8 +1,8 @@
 
 <h1>All tracks</h1>
 
-<% if params[:message] %>
-  <p style="color: red;"><%= params[:message] %></p>
+<% if logged_in? %>
+<a href="/tracks/new">Post a new track...</a>
 <% end %>
 
 <% @tracks.each do |track| %>

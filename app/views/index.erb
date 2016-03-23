@@ -1,9 +1,6 @@
-<% if params[:message] %>
-  <p><%= params[:message] %></p>
-<% end %>
 <h1>Welcome to Music Tracks</h1>
+
 <a href="/tracks">View all tracks...</a>
-<a href="/tracks/new">Post a new track...</a>
 
 <% unless logged_in?%>
   

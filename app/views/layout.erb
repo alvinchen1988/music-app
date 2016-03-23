@@ -25,6 +25,9 @@
           <input class="btn btn-primary" type="submit" value="Log out">
     </form>
   <% end %>
+  <% if flash[:notice] %>
+  <p style="color: green"><%= flash[:notice] %></p>
+  <% end %>
   <%= yield %>
 </body>
 </html>

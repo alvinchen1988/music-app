@@ -1,4 +1,5 @@
 # Homepage (Root path)
+use Rack::Flash
 
 helpers do 
 
@@ -42,7 +43,8 @@ post '/login' do
     session[:user_id] = user.id
     redirect '/tracks'
   else
-    redirect '/?message=wrong password or username'
+    flash[:notice] = "wrong password or username"
+    redirect '/'
   end
 end
 
@@ -68,9 +70,10 @@ end
 post '/tracks' do
   @track = Track.new
   @track.title = params[:title]
-  @track.author = params[:author]
+  @track.author = current_user.email
   @track.url = params[:url]
   if @track.save
+    flash[:notice] = "#{@track.title} by #{@track.author} is succesfully uploaded"
     redirect '/tracks'
   else
     erb :'tracks/new'
@@ -82,8 +85,10 @@ post '/cast-vote' do
   @vote.user = current_user
   @vote.track_id = params[:track_id]
   if @vote.save
-    redirect '/tracks?message=you have successfully voted a track'
+    flash[:notice] = "#{current_user.email}, you have successfully voted a track"
+    redirect '/tracks'
   else
-    redirect '/tracks?message=you already upvoted this track!'
+    flash[:notice] = "#{current_user.email},you already upvoted this track!"
+    redirect '/tracks'
   end
 end 
